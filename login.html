@@ -15,17 +15,43 @@
 <div class="login_page container-fluid"> 
 			
 			<div class="form">
-				<form class="login_form">
-				<input type="text" placeholder="Username" id="username"/>
-				<input type="text" placeholder="Password" id="password"/>
-				<button id="submit" onclick="validate2()">Login</button>
+				<form class="login_form" id='login-forma'>
+				<input type="text" placeholder="Username" name="username"/>
+				<input type="text" placeholder="Password" name="password"/>
+				<button id="submit">Login</button>
 				<p class="message"> Not a member yet? <a href="register.html">Register</a> </p>
+				<p id='poruka-forme'></p>
 				</form>
 			</div>
 		</div>	
 
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
+ <script type="text/javascript">
+ 	var $porukaFormeElement = $('#poruka-forme')
+ 	$('#login-forma').submit(function (ev) {
+ 		var serializiranaForma = $(this).serializeArray()
+ 		var body = {
+ 			[serializiranaForma[0].name]: serializiranaForma[0].value,
+ 			[serializiranaForma[1].name]: serializiranaForma[1].value,
+ 		}
+ 		
+ 		$porukaFormeElement.empty()
+ 		ev.preventDefault()
+
+ 		$.post('http://localhost:3000/login', body, function (res) {
+ 			$porukaFormeElement.html(res.message)
+
+ 			if (res.status) {
+ 				document.location.href = 'index.html'
+ 			}
+ 		})
+ 	})
+ </script>
 
 </body>
 
