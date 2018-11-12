@@ -1,13 +1,16 @@
+var jwt = require('jsonwebtoken')
+
 var connection = require('../db_config')
+var constants = require('../constants')
+
 
 function loginHandler (req,res) {
 	var username = req.body.username; 
 	var password = req.body.password;
 
-	console.log(username, password, req.body)
 	connection.query('SELECT * FROM bgn_user WHERE username = ?',[username], function (error, results, fields){
-		console.log('reci mi error', error, 'reci mi rezultate', results)
-		if (results.length === 0){
+		//console.log('reci mi error', error, 'reci mi rezultate', results) 
+    	if (results.length === 0){
 			return res.json({
 				status: false, 
 				message: 'Unedentified user, please register'
@@ -15,10 +18,12 @@ function loginHandler (req,res) {
 		}
 		else{
 			if(results.length > 0){
+				console.log('results', results[0])
 				if(password==results[0].password){
 					return res.json({
 						status:true,
-						message:'User i pass ok'
+						token: jwt.sign({username: results[0].username}, constants.JWT_SECRET),
+						message:'User logged in succesfully!'
 					})
 
 				} 

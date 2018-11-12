@@ -12,6 +12,12 @@ function registerHandler (req,res){
 	};
 
 	connection.query('INSERT INTO bgn_user SET ?',user, function (error, results, fields) {
+		if (req.body.username == username){
+			return res.json({
+				status: false,
+				message: 'Username already exists, pick another one'
+		})
+		}
 		if (error) {
 			return res.json({
 				status:false,
@@ -21,7 +27,7 @@ function registerHandler (req,res){
 			return res.json({
 				status:true,
 				data:results,
-				message:'Korisnik se uspješno registrirao'
+				message:'User has succesfully registered'
 			})
 		}
 	});

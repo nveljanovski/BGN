@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BGN</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/test.css">
+	<script type="text/javascript" src="js/login.js"> </script>
+</head>
+<body>
+
+
+<div class="login_page container-fluid"> 
+			
+			<div class="profile">
+				<form class="profile_form" id='profile-forma'>
+
+				<label>Name</label><input type="text" id='name' name="name" disabled/>
+				<label>Last name</label><input type="text" id='lastname' name="lastname" disabled/>
+				<label>Username</label><input type="text" id='username' disabled/>
+				<label>E-mail</label><input type="text" id='email' name="email" disabled/>
+				<p id='poruka-forme'></p>
+				</form>
+			</div>
+		</div>	
+
+<div class="login_page container-fluid"> 
+		<div class="profile">
+				<form class="profile_form" id='profile-forma'>
+
+				<label>Game</label><input type="text" id='game' name="game"/>
+				<label>Date</label><input type="text" id='date' name="date"/>
+				<label>Price</label><input type="text" id= 'price' name="price"/>
+				<p id='poruka-forme'></p>
+				</form>
+			</div>
+
+
+	</div>	
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+ <script type="text/javascript">
+ 	function popuni_input (vrijednost, polje) {
+ 		$('#' + polje).val(vrijednost)
+ 	}
+
+ 	function dohvati (token) {
+ 		$.ajax({
+         url: "http://localhost:3000/me",
+         type: "GET",
+         beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+         success: function(res) {
+			popuni_input(res.email, 'email')         	
+			popuni_input(res.name, 'name')         	
+			popuni_input(res.lastName, 'lastname')         	
+			popuni_input(res.username, 'username')         	
+         }
+      });
+ 	}
+
+ 	dohvati(localStorage.getItem('token'))
+
+function popuni_purchase (prc, mrc) {
+ 		$('#' + mrc).val(prc)
+ 	}
+
+ 	function dohvati_purch (token) {
+ 		$.ajax({
+         url: "http://localhost:3000/me",
+         type: "GET",
+         beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+         success: function(res) {
+			popuni_purchase(res.game, 'game')         	
+			popuni_purchase(res.date, 'date')         	
+			popuni_purchase(res.price, 'price')         	
+			//popuni_purchase(res.username, 'username')         	
+         }
+      });
+ 	}
+
+ 	dohvati_purch(localStorage.getItem('token'))
+
+
+
+
+ </script>
+
+</body>
+
+

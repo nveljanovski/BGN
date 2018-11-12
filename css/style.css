@@ -10,6 +10,10 @@
    padding: 0 !important;
    margin: 0 !important;
 }
+.container-fluid{
+
+	position: relative;
+}
 .wrap {
 	perspective: none;
 	perspective-origin: 100% 100px;
@@ -21,6 +25,45 @@ img{
 	width: 100%;
 }
 */
+
+.dropdown{
+
+	position: absolute;
+	top: -5px;
+	right: 50px;
+	display: block;
+	float: left;
+	padding: 5px; /*ne treba*/
+}
+.dropdown-menu{
+
+	position: absolute;
+	right: 5px; 
+}
+
+/*Sponzori*/
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.row{
+
+	position: relative;
+}
+.column {
+  float: left;
+  position: absolute;
+  width: 30%;
+  padding: 5px;
+  margin: auto; 
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/*sponzori end*/
+
 
 .login_page{
 	background-image: url('../images/Login_page1.png');	
@@ -45,6 +88,8 @@ img{
 	padding: 80px;
 	text-align: center;
 }
+
+
 
 .form input{
 	font-family: "Roboto", sans-serif; 
@@ -71,6 +116,41 @@ img{
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 	cursor: pointer;
 }
+
+.profile{
+	position: relative;
+	z-index: 1;
+	background: #e2925d;
+	max-width: 400px;
+	margin: 0 auto	100px;
+	padding: 80px;
+	text-align: center;
+}
+
+.profile input{
+	font-family: "Roboto", sans-serif; 
+	outline: 1;
+	background: #f2f2f2;
+	width: auto;
+	border: 0; 
+	margin: 0 0 10px; 	
+	box-sizing: border-box;
+	font-size: 14px; 
+	font-style: italic;
+	font-weight: lighter; 
+}
+
+label{
+
+	display: inline-block;
+	width: auto;
+	
+
+
+}
+
+
+
 /*ako stignem, button slow transition*/
 .form button:active {
   
@@ -182,6 +262,12 @@ Vjerojatno mi je kriv html dio, pa mi ovdje kocku krivo pokazuje?*/
 
 @media screen and (min-width: 1824px) {
 	
+}
+/*sponzori_resposive*/
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
 }
 
 /*button*/
