@@ -24,7 +24,17 @@ app.get('/me', auth, require('./routes/profile'))
 //sekcija za prijasnje kupnje
 app.get('/previous_purchases', auth, require('./routes/previous_purchases'))
 
+//sekcija za pregled svih usera kao admin
+app.get('/admin_user', auth, require('./routes/admin_user'))
 
+//sekcija za pregled svih igara kao admin
+app.get('/admin_games', auth, require('./routes/admin_games'))
+
+//sekcija za unos promjena po useru
+app.post('/changes', require('./routes/changes'))
+
+//sekcija za kupnju igara
+//app.post('/buygames', require('routes/buygames'))
 
 
 

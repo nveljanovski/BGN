@@ -1,14 +1,14 @@
 .body {
-    width: 100%;
-    height: 100vh;
+	width: 100%;
+	height: 100vh;
 	background:transparent;
 	background-position: center;
 	background-size: cover; 
-	}
+}
 
 .no_padding {
-   padding: 0 !important;
-   margin: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 .container-fluid{
 
@@ -18,19 +18,18 @@
 	perspective: none;
 	perspective-origin: 100% 100px;
 }
-/*
-img{
+
+.slika{
 
 	height: auto;
-	width: 100%;
+	max-width: 100%;
 }
-*/
 
 .dropdown{
 
 	position: absolute;
 	top: -5px;
-	right: 50px;
+	right: 30px;
 	display: block;
 	float: left;
 	padding: 5px; /*ne treba*/
@@ -48,141 +47,142 @@ img{
 
 	position: relative;
 }
-.column {
+/*.column {
   float: left;
   position: absolute;
   width: 30%;
   padding: 5px;
   margin: auto; 
-}
+  }*/
 
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-/*sponzori end*/
-
-
-.login_page{
-	background-image: url('../images/Login_page1.png');	
-	width: 100%;
-	height: 100vh;	
-	padding: 10% 0 0;
-}
-
-.register_page{
-	background-image: url('../images/Login_page1.png');	
-	width: 100%;
-	height: 100vh;	
-	padding: 10% 0 0;
-}
-
-.form{
-	position: relative;
-	z-index: 1;
-	background: #e2925d;
-	max-width: 360px;
-	margin: 0 auto	100px;
-	padding: 80px;
-	text-align: center;
-}
+  /* Clear floats after image containers */
+  .row::after {
+  	content: "";
+  	clear: both;
+  	display: table;
+  }
+  /*sponzori end*/
 
 
+  .login_page{	
+  	background-color: #61bdf7;
+  	width: 100%;
+  	height: 100vh;	
+  	padding: 10% 0 0;
+  }
 
-.form input{
-	font-family: "Roboto", sans-serif; 
-	outline: 1;
-	background: #f2f2f2;
-	width: 100%;
-	border: 0; 
-	margin: 0 0 10px; 	
-	box-sizing: border-box;
-	font-size: 14px; 
-	font-style: italic;
-	font-weight: lighter; 
-}
+  .register_page{
+  	background-image: url('../images/Login_page1.png');	
+  	width: 100%;
+  	height: 100vh;	
+  	padding: 5% 0 0;
+  }
 
-.form button{
-	font-family: "Roboto", sans-serif; 
-	text-transform: uppercase;
-	outline: 0;
-	background: #ffd800; 
-	width:auto;
-	border: 0;
-	padding: 5px; 
-	font-size: 14px;
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-	cursor: pointer;
-}
-
-.profile{
-	position: relative;
-	z-index: 1;
-	background: #e2925d;
-	max-width: 400px;
-	margin: 0 auto	100px;
-	padding: 80px;
-	text-align: center;
-}
-
-.profile input{
-	font-family: "Roboto", sans-serif; 
-	outline: 1;
-	background: #f2f2f2;
-	width: auto;
-	border: 0; 
-	margin: 0 0 10px; 	
-	box-sizing: border-box;
-	font-size: 14px; 
-	font-style: italic;
-	font-weight: lighter; 
-}
-
-label{
-
-	display: inline-block;
-	width: auto;
-	
+  .form{
+  	position: relative;
+  	z-index: 1;
+  	background: #e2925d;
+  	max-width: 360px;
+  	margin: 0 auto	100px;
+  	padding: 80px;
+  	text-align: center;
+  }
 
 
-}
+  .form input{
+  	font-family: "Roboto", sans-serif; 
+  	outline: 1;
+  	background: #f2f2f2;
+  	width: 100%;
+  	border: 0; 
+  	margin: 0 0 10px; 	
+  	box-sizing: border-box;
+  	font-size: 14px; 
+  	font-style: italic;
+  	font-weight: lighter; 
+  }
 
+  .form button{
+  	font-family: "Roboto", sans-serif; 
+  	text-transform: uppercase;
+  	outline: 0;
+  	background: #ffd800; 
+  	width:auto;
+  	border: 0;
+  	padding: 5px; 
+  	font-size: 14px;
+  	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  	cursor: pointer;
+  }
 
+  .profile{
+  	position: relative;
+  	z-index: 1;
+  	background: #e2925d;
+  	max-width: 400px;
+  	margin: 0 auto	100px;
+  	padding: 10px 80px 20px 80px;
+  	/**text-align: center;**/
+  }
 
-/*ako stignem, button slow transition*/
-.form button:active {
-  
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  .profile_form
+  {
+  	padding: 30px  0px  0px  0px;
 
-}
-p.message {
-	padding-top: 10%;  
-}
+  }
 
+  .profile input{
+  	font-family: "Roboto", sans-serif; 
+  	outline: 1;
+  	background: #f2f2f2;
+  	width: auto;
+  	border: 0; 
+  	margin: 0 0 10px; 	
+  	box-sizing: border-box;
+  	font-size: 14px; 
+  	font-style: italic;
+  	font-weight: lighter; 
+  }
+  /*ne koristi se više*/
+  label{
 
+  	display: inline-block;
+  	width: auto;
+  	
+  }
 
+  .log_reg{
 
+  	color: purple;
+  	font-family: Montserrat;
+  	font-size: 45px;
+  	width: 100%;
+  	text-align: center ;
+  	color: white;
+  }
 
+  /*ako stignem, button slow transition*/
+  .form button:active {
+  	
+  	box-shadow: 0 5px #666;
+  	transform: translateY(4px);
 
-
-
-
-
-
-
+  }
+  p.message {
+  	padding-top: 10%;  
+  }
 /*problem mi je mislim kod uporabe absolute/relative. Da bi mi kocka ispala kako spada morao sam se 
-igrati sa .cube da bi ju dobio na desnoj strani. 
-Vjerojatno mi je kriv html dio, pa mi ovdje kocku krivo pokazuje?*/
+igrati sa .cube da bi ju dobio na desnoj strani.*/
 .cube{
 
 	/*width: 220px;*/
-	position: absolute;
-	right: 5px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	right: 0px;
 	top: 45%;
 	width: 200px;
+	height: 100px;
 	transform-style: preserve-3d;
 }
 .cube div {
@@ -265,10 +265,111 @@ Vjerojatno mi je kriv html dio, pa mi ovdje kocku krivo pokazuje?*/
 }
 /*sponzori_resposive*/
 @media screen and (max-width: 500px) {
-  .column {
-    width: 100%;
-  }
+ /* .column {
+ 	width: 100%;*/
+ }
 }
 
-/*button*/
+@font-face {
+	font-family: 'Montserrat-Bold';
+	src: url('Montserrat-Bold.otf'); 
+}
 
+
+#sponsorsContainer
+{
+	background-color: #61bdf7;
+}
+
+#footerContainer
+{
+	background-color: #e0e0e0;
+
+}
+.footer-text
+{
+	color: purple;
+	font-size: 25px;
+	margin: 30px;
+	width: 100%;
+	text-align: center ;
+}
+
+#loginlabel
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 30px;
+	color: white;
+	width: 100%;
+}
+
+#profileBtns
+{
+	position: absolute;
+	right: 0;
+}
+
+.d-none
+{
+	display: none;
+}
+
+.d-block
+{
+	display: inline-block;
+}
+.sponsor_img{
+
+	position: float;
+	padding: 10px 5px 10px 5px; 
+}
+.text-center{
+
+	font-family: Montserrat;
+	font-size: 50px;
+	color: white;
+} 
+
+/*pozicija social u footer*/
+.social_loc{
+	display: inline-block;
+	position: relative;
+	text-align: center;
+
+	/*padding: 0px 5px 5px 5px;*/
+
+}
+.footer-text{
+
+	font-family: Montserrat;
+	font-size: 20px; 
+}
+#games_list{
+	background-color: #e2925d;
+
+
+}
+#profile_forma{
+	background: #61bdf7;
+
+
+}
+/*boja pozadine shop cijene*/
+.back_color{
+
+	background-color: #61bdf7;
+
+}
+.shop_text{
+
+	color: white; 
+}
+/*index.html - edit sekcija2*/
+.sekcija_2{
+	margin-right: 0px; 
+	margin-left: 0px; 
+	
+
+}

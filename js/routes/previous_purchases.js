@@ -9,12 +9,7 @@ function purchaseHandler (req,res) {
 			})
 		}
 
-		res.status(200).json({
-			game: results[0].game_name,
-			date: results[0].purch_date,
-			price: results[0].game_price,
-			
-		})
+		res.status(200).json(results)
 
 	});
 }

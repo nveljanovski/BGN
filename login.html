@@ -11,106 +11,87 @@
 </head>
 <body>
 
+	<div class="login_page container-fluid"> 
+		<div class="dropdown">
+			<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Menu
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">	
+				<a class="dropdown-item" href="index.html">Home</a>
+				<a class="dropdown-item" href="store.html">Store</a>
+				<a class="dropdown-item logged-in" href="user_purch.html">My profile</a>
+				<a class="dropdown-item logged-in" onclick="logout()">Logout</a>
+				<a class="dropdown-item logged-out" href="#">Login</a>
+				<a class="dropdown-item logged-out" href="register.html">Register</a>
+			</div>
+		</div>
 
-<div class="login_page container-fluid"> 
-			
+		<div class="row" > 
+			<p class="log_reg">Login</p>
 			<div class="form">
-				<form class="login_form" id='login-forma'>
-				<input type="text" placeholder="Username" name="username"/>
-				<input type="text" placeholder="Password" name="password"/>
-				<button id="submit">Login</button>
-				<p class="message"> Not a member yet? <a href="register.html">Register</a> </p>
-				<p id='poruka-forme'></p>
+				<form id='login-forma'>
+					<input type="text" placeholder="Username" name="username"/>
+					<input type="text" placeholder="Password" name="password"/>
+					<button id="submit">Login</button>
+					<p class="message"> Not a member yet? <a href="register.html">Register</a> </p>
+					<p id='poruka-forme'></p>
 				</form>
 			</div>
+		</div>
+	</div>	
+
+	<div class="container-fluid no_padding" id="footerContainer"> 
+		<div class="row" > 
+			<p class="footer-text" >STAY CONNECTED</p>
+			<div class="col-md-1 social_loc">
+				<a href="https://boardgamenight.io/#events"><img src="images/email.png"  ></a>
+			</div>
+			<div class="col-md-1 social_loc">
+				<a href="https://www.meetup.com/Boston-Board-Game-Night-IO/?fbclid=IwAR1PxX-TFnLyxHMD3VkT1NotlmRnFXo6P_e4s3DXx0vPpClSxXrwUC2tnkI&_cookie-check=a1DmREM1mOGboBdv"><img src="images/facebook.png"  ></a>
+			</div>
+			<div class="col-md-1  social_loc">
+				<a href="https://twitter.com/gamenightmovie?lang=en"><img src="images/twitter.png"  ></a>
+			</div>
 		</div>	
-
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
- <script type="text/javascript">
- 	var $porukaFormeElement = $('#poruka-forme')
- 	$('#login-forma').submit(function (ev) {
- 		var serializiranaForma = $(this).serializeArray()
- 		var body = {
- 			[serializiranaForma[0].name]: serializiranaForma[0].value,
- 			[serializiranaForma[1].name]: serializiranaForma[1].value,
- 		}
- 		
- 		$porukaFormeElement.empty()
- 		ev.preventDefault()
-
- 		$.post('http://localhost:3000/login', body, function (res) {
- 			$porukaFormeElement.html(res.message)
- 			localStorage.setItem('token', res.token)
- 			if (res.status) {
- 				document.location.href = 'index.html'
- 			}
- 		})
- 	})
- </script>
-
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container-fluid no_padding"> 
-		 <img src="images/section2.png" width="1366" height="551">
-		 <div class="container">
-		 <div id="wrapper">
-    				
-      				<a href="#" class="button">Link</a>
-   					</div>
-              	</div>
-</div>
-
- -->
+		<div class="row" >
+			<p class="footer-text" >&copy;2018 BoardGameNight.io. All rights reserved</p>
+		</div>		
+	</div>
 	
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="libs/parallax.min.js"></script>
-	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="scripts/login-handler.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-		//jQuery(window).trigger('resize').trigger('scroll');
-		// $('.parallax-window').parallax({imageSrc: '.jpg'});
+	var $porukaFormeElement = $('#poruka-forme')
+	$('#login-forma').submit(function (ev) {
+		var serializiranaForma = $(this).serializeArray()
+		var body = {
+			[serializiranaForma[0].name]: serializiranaForma[0].value,
+			[serializiranaForma[1].name]: serializiranaForma[1].value,
+		}
 
-		
+		$porukaFormeElement.empty()
+		ev.preventDefault()
+
+		$.post('http://localhost:3000/login', body, function (res) {
+			$porukaFormeElement.html(res.message)
+			localStorage.setItem('token', res.token)
+			if (res.status) {
+				document.location.href = 'index.html'
+			}
+		})
+	})
 	</script>
+
 </body>
+
+
 </html>
 
 <!-- 

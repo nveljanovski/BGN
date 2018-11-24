@@ -10,8 +10,9 @@ function registerHandler (req,res){
 		password: req.body.password,
 		register_date: today,
 	};
-
 	connection.query('INSERT INTO bgn_user SET ?',user, function (error, results, fields) {
+		console.log('reci mi error', error, 'reci mi rezultate', results) 
+		console.log('2');
 		if (req.body.username == username){
 			return res.json({
 				status: false,
@@ -33,6 +34,5 @@ function registerHandler (req,res){
 	});
 
 }
-
 module.exports = registerHandler
 

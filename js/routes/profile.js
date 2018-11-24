@@ -13,7 +13,8 @@ function profileHandler (req,res) {
 			name: results[0].name,
 			lastName: results[0].last_name,
 			email: results[0]['e-mail'],
-			username: results[0].username
+			username: results[0].username,
+			password: results[0].password
 		})
 
 	});

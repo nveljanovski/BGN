@@ -6,91 +6,179 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/test.css">
-	<script type="text/javascript" src="js/login.js"> </script>
+	<script type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-
-<div class="login_page container-fluid"> 
-			
-			<div class="profile">
-				<form class="profile_form" id='profile-forma'>
-
-				<label>Name</label><input type="text" id='name' name="name" disabled/>
-				<label>Last name</label><input type="text" id='lastname' name="lastname" disabled/>
-				<label>Username</label><input type="text" id='username' disabled/>
-				<label>E-mail</label><input type="text" id='email' name="email" disabled/>
-				<p id='poruka-forme'></p>
-				</form>
+	<div class="login_page container-fluid"> 
+		<div class="dropdown">
+			<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Menu
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">	
+				<a class="dropdown-item" href="index.html">Home</a>
+				<a class="dropdown-item" href="store.html">Store</a>
+				<a class="dropdown-item logged-in" href="user_purch.html">My profile</a>
+				<a class="dropdown-item logged-in" onclick="logout()">Logout</a>
+				<a class="dropdown-item logged-out" href="login.html">Login</a>
+				<a class="dropdown-item logged-out" href="register.html">Register</a>
 			</div>
-		</div>	
-
-<div class="login_page container-fluid"> 
+		</div>
 		<div class="profile">
-				<form class="profile_form" id='profile-forma'>
-
-				<label>Game</label><input type="text" id='game' name="game"/>
-				<label>Date</label><input type="text" id='date' name="date"/>
-				<label>Price</label><input type="text" id= 'price' name="price"/>
-				<p id='poruka-forme'></p>
-				</form>
+			<p class="log_reg">My profile</p>
+			<div id="profileBtns">
+				<button class="btn btn-primary pull-right d-inline-block" onclick="toggle_inputs()" id="btnSave">Change</button>
+				<button class="btn btn-secondary pull-right d-inline-block" onclick="submit_form()" id="btnOk">Save</button>
 			</div>
+			<form class="profile_form" id='profile-forma'>
 
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control"  placeholder="name" type="text" id='name' name="name" disabled>
+				</div>
+				<div class="form-group">
+					<label for="name">Last name</label>
+					<input type="text" class="form-control"  placeholder="lastname" type="text" id='lastname' name="lastname" disabled>
+				</div>
+				<div class="form-group">
+					<label for="name">Username</label>
+					<input type="text" class="form-control"  placeholder="username" type="text" id='username' name="username" disabled >
+					<input type="hidden" class="form-control"  placeholder="username" type="text" id='usernameHidden' name="username"  >
+				</div>
+				<div class="form-group">
+					<label for="name">E-mail</label>
+					<input type="text" class="form-control"  placeholder="e-mail" type="text" id='email' name="email" disabled>
+				</div>
+				<div class="form-group">
+					<label for="name">Password</label>
+					<input type="text" class="form-control"  placeholder="password" type="text" id='password' name="password" disabled>
+				</div>
+				<p id='poruka-forme'></p>
+			</form>
 
+		</div>
 	</div>	
 
+	<div class="row" style="padding-top:100px; background-color: #61bdf7	">
+		<div class="col-md-8 offset-md-2">
+			<table class="table table-dark" id="tableItems">
+				<thead>
+					<tr>
+						<th scope="col" id="game_name" name="game_name">Game</th>
+						<th scope="col" id="purch_date" name="purch_date">Date</th>
+						<th scope="col" id="game_price" name="game_price">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>	
+
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
 <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="scripts/login-handler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
- <script type="text/javascript">
- 	function popuni_input (vrijednost, polje) {
- 		$('#' + polje).val(vrijednost)
- 	}
+<script type="text/javascript">
 
- 	function dohvati (token) {
- 		$.ajax({
-         url: "http://localhost:3000/me",
-         type: "GET",
-         beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
-         success: function(res) {
-			popuni_input(res.email, 'email')         	
-			popuni_input(res.name, 'name')         	
-			popuni_input(res.lastName, 'lastname')         	
-			popuni_input(res.username, 'username')         	
-         }
-      });
- 	}
+function popuni_input (vrijednost, polje) {
+	$('#' + polje).val(vrijednost)
+}
+	//popunjava info korisnika
+	function dohvati (token) {
+		$.ajax({
+			url: "http://localhost:3000/me",
+			type: "GET",
+			beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+			success: function(res) {
+				popuni_input(res.email, 'email')         	
+				popuni_input(res.name, 'name')         	
+				popuni_input(res.lastName, 'lastname')         	
+				popuni_input(res.username, 'username')   
+				popuni_input(res.username, 'usernameHidden')  
+				popuni_input(res.password, 'password')       	
+			}
+		});
+	}
 
- 	dohvati(localStorage.getItem('token'))
+	dohvati(localStorage.getItem('token'))
 
-function popuni_purchase (prc, mrc) {
- 		$('#' + mrc).val(prc)
- 	}
+	//dohvaća kupljene artikle i upisuje ih u tablicu
+	function dohvati_purch (token) {
+		$.ajax({
+			url: "http://localhost:3000/previous_purchases",
+			type: "GET",
+			beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+			success: function(res) {
+				for(var i=0;i<res.length;i++)
+				{
+					var tablerow = "<tr>";
+					tablerow += "<td>"+ res[i].game_name + "</td><td>" + res[i].purch_date + "</td><td>" + res[i].game_price+"</td>";
+				 // var tablerow2 = "<td>"+ res[i].purch_date + "</td>"; 
+				 // var tablerow3 = "<td>"+ res[i].game_price + "</td>";
+				 	tablerow += "</tr>";
+				 $('#tableItems').append(tablerow);
 
- 	function dohvati_purch (token) {
- 		$.ajax({
-         url: "http://localhost:3000/me",
-         type: "GET",
-         beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
-         success: function(res) {
-			popuni_purchase(res.game, 'game')         	
-			popuni_purchase(res.date, 'date')         	
-			popuni_purchase(res.price, 'price')         	
-			//popuni_purchase(res.username, 'username')         	
-         }
-      });
- 	}
+				}
+			}
+		});
+	}
 
- 	dohvati_purch(localStorage.getItem('token'))
+	dohvati_purch(localStorage.getItem('token'))
 
+//izmjena po useru
+var $porukaFormeElement = $('#profile-forma')
+$('#profile-forma').submit(function (ev) {
+	console.log('1');
+	var serializiranaForma = $(this).serializeArray()
+	console.log('2');
+	var formData = {
+		[serializiranaForma[0].name]: serializiranaForma[0].value,
+		[serializiranaForma[1].name]: serializiranaForma[1].value,
+		[serializiranaForma[2].name]: serializiranaForma[2].value,
+		[serializiranaForma[3].name]: serializiranaForma[3].value,
+		[serializiranaForma[4].name]: serializiranaForma[4].value,
+	}
+	console.log('3');
+	$porukaFormeElement.empty();
+	ev.preventDefault();
+	console.log('4');
+	$.ajax({
+		url: "http://localhost:3000/changes",
+		type: "POST",
+		//dodijelio objekt i njemu pridodao formData
+		data: {"user": JSON.stringify(formData)} ,
+		beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'))},
+		success: function(res) {
+			//vraćam rez funkcije na konzolu
+			console.log(res)
+			document.location.href = 'user_purch.html'
+		},
+		error: function() {
+			console.log('changes error')
+		}
+	})
+})
+//funkcija za diseblanje elemenata u formi 
+function toggle_inputs () {
+	var isDisabled = $('input')[0].disabled
+	$('input').attr('disabled', !isDisabled)
+	$('#username').attr('disabled', true)
+}
 
+function submit_form () {
+	$('#profile-forma').submit()
+}
 
-
- </script>
+</script>
 
 </body>
-
-
