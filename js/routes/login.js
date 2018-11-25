@@ -22,6 +22,7 @@ function loginHandler (req,res) {
 				if(password==results[0].password){
 					return res.json({
 						status:true,
+						admin: !!results[0].is_admin,
 						token: jwt.sign({username: results[0].username}, constants.JWT_SECRET),
 						message:'User logged in succesfully!'
 					})

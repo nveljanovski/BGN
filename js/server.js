@@ -33,9 +33,10 @@ app.get('/admin_games', auth, require('./routes/admin_games'))
 //sekcija za unos promjena po useru
 app.post('/changes', require('./routes/changes'))
 
-//sekcija za kupnju igara
-//app.post('/buygames', require('routes/buygames'))
+//sekcija za kupnju igara :game_code parametar koji povlačim u getGame
+app.get('/getGame/:game_code', require('./routes/getGame'))
 
-
+//sekcija za unos promjena po useru
+app.post('/buygames/:game_code', auth, require('./routes/buygames'))
 
 

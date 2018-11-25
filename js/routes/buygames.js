@@ -1,17 +1,19 @@
+var moment = require('moment')
 var connection = require('../db_config')
 
 function gamesHandler (req,res){
+	console.log(req.body, req.params, req.user)
 	var user = {
-		username: req.body.username,
-		game_code: req.body.gamecode, 
-		game_name: req.body.gamename,
-		purch_date: today,
-		game_price: req.body.gameprice,
+		username: req.user.username,
+		game_code: req.params.game_code, 
+		game_name: req.body.game_name,
+		purch_date: moment().format(),
+		game_price: req.body.game_price,
 	};
-	connection.query('UPDATE bgn_prevpurch SET name',user, function (error, results, fields) {
+	connection.query('INSERT INTO bgn_prevpurch SET ?',user, function (error, results, fields) {
 		console.log('reci mi error', error, 'reci mi rezultate', results) 
 		if (error) {
-			return res.json({
+			return res.status(400).json({
 				status:false,
 				message:'Greška je u queriju'
 			})
@@ -26,4 +28,4 @@ function gamesHandler (req,res){
 
 }
 
-module.exports = changesHandler
+module.exports = gamesHandler

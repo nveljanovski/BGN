@@ -1,8 +1,8 @@
 var connection = require('../db_config')
 
-function usersHandler (req,res) {
+function userListHandler (req,res) {
 	var username = req.user.username
-	connection.query('SELECT * FROM bgn_user WHERE username = ?',[username], function (error, results, fields){
+	connection.query('SELECT * FROM bgn_user ',[username], function (error, results, fields){
 		if (results.length < 1) {
 			res.status(400).json({
 				message: 'There are no users'
@@ -14,4 +14,5 @@ function usersHandler (req,res) {
 	});
 }
 
-module.exports = usersHandler 
+module.exports = userListHandler 
+

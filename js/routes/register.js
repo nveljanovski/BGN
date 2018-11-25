@@ -1,4 +1,5 @@
 var connection = require('../db_config')
+var moment= require('moment')
 
 function registerHandler (req,res){
 	var today = new Date();
@@ -8,7 +9,7 @@ function registerHandler (req,res){
 		last_name: req.body.lastname, 
 		'e-mail': req.body.email,
 		password: req.body.password,
-		register_date: today,
+		register_date: moment().format(),
 	};
 	connection.query('INSERT INTO bgn_user SET ?',user, function (error, results, fields) {
 		console.log('reci mi error', error, 'reci mi rezultate', results) 

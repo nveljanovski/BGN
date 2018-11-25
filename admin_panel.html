@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BGN</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class=" login_page container-fluid"> 
+			<div class="dropdown">
+				<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Menu
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">	
+					<a class="dropdown-item" href="index.html">Home</a>
+					<a class="dropdown-item" href="store.html">Store</a>
+					<a class="dropdown-item logged-in" href="user_purch.html">My profile</a>
+					<a class="dropdown-item logged-in" onclick="logout()">Logout</a>
+					<a class="dropdown-item logged-out" href="login.html">Login</a>
+					<a class="dropdown-item admin" href="admin_panel.html">Admin panel</a>
+					<a class="dropdown-item logged-out" href="register.html">Register</a>
+				</div>
+			</div>	
+
+			<div class="row" style="padding-top:0px; background-color: #61bdf7	">
+				<div class="col-md-8 offset-md-2">
+					<table class="table table-dark" id="tableItems">
+						<thead>
+							<tr>
+								<th scope="col" id="username" name="username">Username</th>
+								<th scope="col" id="name" name="name">Name</th>
+								<th scope="col" id="lastname" name="lastname">Lastname</th>
+								<th scope="col" id="password" name="password">Password</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+	<div class="row" style="padding-top:100px; background-color: #61bdf7	">
+		<div class="col-md-8 offset-md-2">
+			<table class="table table-dark" id="tableItems">
+				<thead>
+					<tr>
+						<th scope="col" id="game_code" name="game_code">Game code</th>
+						<th scope="col" id="game_name" name="game_name">Game name</th>
+						<th scope="col" id="game_price" name="game_price">Price</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+		<div class="container-fluid no_padding" id="footerContainer"> 
+			<div class="row"> 
+				<p class="footer-text" >STAY CONNECTED</p>
+			</div>
+
+			<div class="row" > 
+
+				<div class="col-md-4 offset-md-4 row">
+					<div class="col-md-4 social_loc">
+						<a href="https://boardgamenight.io/#events"><img src="images/email.png"  ></a>
+					</div>
+					<div class="col-md-4 social_loc">
+						<a href="https://www.meetup.com/Boston-Board-Game-Night-IO/?fbclid=IwAR1PxX-TFnLyxHMD3VkT1NotlmRnFXo6P_e4s3DXx0vPpClSxXrwUC2tnkI&_cookie-check=a1DmREM1mOGboBdv"><img src="images/facebook.png"  ></a>
+					</div>
+					<div class="col-md-4 social_loc">
+						<a href="https://twitter.com/gamenightmovie?lang=en"><img src="images/twitter.png"  ></a>
+					</div>
+				</div>
+			</div>	
+			<div class="row" >
+				<p class="footer-text" >&copy;2018 BoardGameNight.io. All rights reserved</p>
+			</div>		
+		</div>
+
+
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+		<script src="scripts/login-handler.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript">
+
+	//dohvaća sve usere i upisuje ih u tablicu
+	function dohvati_usere (token) {
+		$.ajax({
+			url: "http://localhost:3000/admin_user",
+			type: "GET",
+			beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+			success: function(res) {
+				for(var i=0;i<res.length;i++)
+				{
+					var tablerow = "<tr>";
+					tablerow += "<td>"+ res[i].username + "</td><td>" + res[i].name + "</td><td>" + res[i].last_name+"</td><td>" + res[i].password + "</td>";
+					tablerow += "</tr>";
+					 $('#tableItems').append(tablerow);
+
+					}
+				}
+			});
+	}
+
+	dohvati_usere(localStorage.getItem('token'))
+
+	function dohvati_igre (token) {
+		$.ajax({
+			url: "http://localhost:3000/admin_games",
+			type: "GET",
+			beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token)},
+			success: function(res) {
+				for(var i=0;i<res.length;i++)
+				{
+					var tablerow = "<tr>";
+					tablerow += "<td>"+ res[i].game_code + "</td><td>" + res[i].game_name + "</td><td>" + res[i].game_price+"</td>";
+				 // var tablerow2 = "<td>"+ res[i].purch_date + "</td>"; 
+				 // var tablerow3 = "<td>"+ res[i].game_price + "</td>";
+				 	tablerow += "</tr>";
+				 $('#tableItems').append(tablerow);
+
+				}
+			}
+		});
+	}
+	dohvati_igre(localStorage.getItem('token'))
+
+
+
+</script>
+	</body>
+	</html>
